@@ -165,33 +165,6 @@ withThemes({
 
 The dropdown automatically updates with your custom themes!
 
-### Using the Web Component Directly
-
-For more control, you can use the `<theme-switcher>` web component directly:
-
-```javascript
-import { ServiceNowThemeLoader } from '../servicenow-theme-loader/index.js';
-import '../servicenow-theme-loader/theme-switcher.js'; // Registers the component
-
-const loader = new ServiceNowThemeLoader({...});
-await loader.loadLightTheme();
-
-// Create and configure switcher
-const switcher = document.createElement('theme-switcher');
-switcher.loader = loader;
-switcher.themes = {
-  coral: { variants: ['light', 'dark'], files: {...} }
-};
-switcher.currentTheme = 'coral:light';
-
-document.body.appendChild(switcher);
-
-// Listen to theme changes
-switcher.addEventListener('theme-changed', (e) => {
-  console.log('Theme changed:', e.detail); // { themeName, variant }
-});
-```
-
 ### Customizing Theme Switcher Appearance
 
 The theme switcher uses CSS custom properties for styling:
