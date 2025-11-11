@@ -107,8 +107,11 @@ withThemes({
 }, async (themeLoader) => {
   // Theme loaded! Dropdown created! Just initialize your app:
 
-  const sidebar = document.getElementById('my-sidebar');
-  sidebar.navItems = [...];
+  const el = document.createElement('div');
+  document.body.appendChild(el);
+  el.innerHTML = `
+    <my-component></my-component>
+  `;
   // ... rest of your app code
 });
 ```
@@ -212,31 +215,6 @@ theme-switcher {
 }
 ```
 
-Or hide it completely:
-
-```javascript
-withThemes(preloadedThemes, { showSwitcher: false }, async (loader) => {
-  // No dropdown created - manual theme control only
-});
-```
-
-### Manual Theme Switching
-
-```javascript
-// Switch to dark theme
-document.getElementById('dark-mode-toggle').addEventListener('click', async () => {
-  await loader.loadDarkTheme();  // Or: await loader.loadTheme('coral', 'dark');
-});
-
-// Switch back to light theme
-document.getElementById('light-mode-toggle').addEventListener('click', async () => {
-  await loader.loadLightTheme();  // Or: await loader.loadTheme('coral', 'light');
-});
-
-// Load a different theme entirely
-await loader.loadTheme('coral', 'dark');
-```
-
 ## API Reference
 
 ### Constructor
@@ -263,134 +241,6 @@ const loader = new ServiceNowThemeLoader({
   styleElementId: 'my-theme'
 });
 ```
-
-### Methods
-
-#### `loadTheme(themeName, variant)`
-
-Load a theme with a specific variant. This is the recommended way to load themes.
-
-```javascript
-await loader.loadTheme('coral', 'dark');
-await loader.loadTheme('coral', 'light');
-```
-
-**Parameters:**
-- `themeName` (String): Theme name (folder name in themes/)
-- `variant` (String): Variant name (e.g., 'light', 'dark')
-
-**Returns:** `Promise<Object>` - Merged theme data
-
----
-
-#### `loadSingleTheme(themePath)`
-
-Load a single theme JSON file (advanced usage).
-
-```javascript
-const themeData = await loader.loadSingleTheme('themes/coral/shape-and-form.json');
-```
-
-**Returns:** `Promise<Object>` - Theme data object
-
----
-
-#### `loadThemeSet(themePaths)`
-
-Load and merge multiple theme files. Later files override earlier files.
-
-```javascript
-await loader.loadThemeSet([
-  'servicenow_styles/colors.json',
-  'servicenow_styles/shape and form.json',
-  'servicenow_styles/typopgrahy.json'
-]);
-```
-
-**Returns:** `Promise<Object>` - Merged theme data
-
----
-
-#### `loadLightTheme()`
-
-Load the standard ServiceNow light theme (colors + shape/form + typography).
-
-```javascript
-await loader.loadLightTheme();
-```
-
-**Returns:** `Promise<Object>` - Merged theme data
-
----
-
-#### `loadDarkTheme()`
-
-Load the standard ServiceNow dark theme (dark colors + shape/form + typography).
-
-```javascript
-await loader.loadDarkTheme();
-```
-
-**Returns:** `Promise<Object>` - Merged theme data
-
----
-
-#### `loadAndApply(themePath)`
-
-Load a single theme file and apply it immediately.
-
-```javascript
-await loader.loadAndApply('servicenow_styles/colors.json');
-```
-
-**Returns:** `Promise<Object>` - Theme data
-
----
-
-#### `removeTheme()`
-
-Clear the active theme reference. Note: CSS custom properties remain set in the DOM until overwritten.
-
-```javascript
-loader.removeTheme();
-```
-
----
-
-#### `clearCache()`
-
-Clear the theme file cache. Useful during development when theme files are modified.
-
-```javascript
-loader.clearCache();
-await loader.loadLightTheme(); // Will fetch fresh from server
-```
-
----
-
-#### `getActiveTheme()`
-
-Get the currently active theme path(s).
-
-```javascript
-const activeTheme = loader.getActiveTheme();
-console.log(activeTheme); // 'servicenow_styles/colors.json' or ['...', '...']
-```
-
-**Returns:** `String|String[]|null`
-
----
-
-#### `getCacheStats()`
-
-Get cache statistics for debugging.
-
-```javascript
-const stats = loader.getCacheStats();
-console.log(stats); // { size: 3, keys: [...] }
-```
-
-**Returns:** `Object` - { size, keys }
 
 ## Advanced Usage
 

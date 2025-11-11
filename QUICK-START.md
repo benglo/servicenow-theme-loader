@@ -15,6 +15,7 @@ your-component-project/
     ├── index.js
     ├── parser.js
     ├── theme-switcher.js
+    ├── elementjs_example.js
     ├── README.md
     └── themes/
         └── coral/
@@ -43,14 +44,16 @@ import coralTypography from '../servicenow-theme-loader/themes/coral/typography.
 
 ## Step 3: Wrap Your Initialization Code
 
-Find your component initialization code (usually an async function or direct setup):
+Find your component initialization code (usually creating a div element and setting the innerHTML) and wrap it with `withThemes()` like this:
 
 **Before:**
 ```javascript
 // Your current code
-async function init() {
-  const myComponent = document.getElementById('my-component');
-  myComponent.config = {...};
+const el = document.createElement('div');
+document.body.appendChild(el);
+el.innerHTML = `
+  <my-component></my-component>
+`;
   // ... rest of setup
 }
 
@@ -66,8 +69,11 @@ withThemes({
   'themes/coral/typography.json': coralTypography
 }, async (themeLoader) => {
   // Your existing initialization code goes here:
-  const myComponent = document.getElementById('my-component');
-  myComponent.config = {...};
+  const el = document.createElement('div');
+  document.body.appendChild(el);
+  el.innerHTML = `
+    <my-component></my-component>
+  `;
   // ... rest of setup
 });
 ```

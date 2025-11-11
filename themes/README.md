@@ -107,39 +107,6 @@ themes/
 }
 ```
 
-### 4. Load Custom Theme
-
-#### Option A: Using the convenience method
-
-```javascript
-const loader = new ServiceNowThemeLoader();
-
-// Load your custom theme with a variant
-await loader.loadTheme('coral', 'light');  // Coral light
-await loader.loadTheme('coral', 'dark');   // Coral dark
-```
-
-#### Option B: Using preloaded themes (webpack/dev server)
-
-```javascript
-import coralLightColors from '../servicenow-theme-loader/themes/coral/variants/light/colors.json';
-import coralDarkColors from '../servicenow-theme-loader/themes/coral/variants/dark/colors.json';
-import coralShape from '../servicenow-theme-loader/themes/coral/shape-and-form.json';
-import coralTypography from '../servicenow-theme-loader/themes/coral/typography.json';
-
-const loader = new ServiceNowThemeLoader({
-  preloadedThemes: {
-    'themes/coral/variants/light/colors.json': coralLightColors,
-    'themes/coral/variants/dark/colors.json': coralDarkColors,
-    'themes/coral/shape-and-form.json': coralShape,
-    'themes/coral/typography.json': coralTypography
-  }
-});
-
-// Load your theme
-await loader.loadTheme('coral', 'light');
-```
-
 ## Theme File Format
 
 ### Base Section
