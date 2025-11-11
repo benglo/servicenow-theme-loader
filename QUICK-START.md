@@ -17,7 +17,7 @@ your-component-project/
     ├── theme-switcher.js
     ├── README.md
     └── themes/
-        └── polaris/
+        └── coral/
             ├── shape-and-form.json
             ├── typography.json
             └── variants/
@@ -35,10 +35,10 @@ Open your `example/element.js` and add these imports at the top:
 import { withThemes } from '../servicenow-theme-loader/theme-switcher.js';
 
 // Import theme JSON files
-import polarisLightColors from '../servicenow-theme-loader/themes/polaris/variants/light/colors.json';
-import polarisDarkColors from '../servicenow-theme-loader/themes/polaris/variants/dark/colors.json';
-import polarisShapeForm from '../servicenow-theme-loader/themes/polaris/shape-and-form.json';
-import polarisTypography from '../servicenow-theme-loader/themes/polaris/typography.json';
+import coralLightColors from '../servicenow-theme-loader/themes/coral/variants/light/colors.json';
+import coralDarkColors from '../servicenow-theme-loader/themes/coral/variants/dark/colors.json';
+import coralShapeForm from '../servicenow-theme-loader/themes/coral/shape-and-form.json';
+import coralTypography from '../servicenow-theme-loader/themes/coral/typography.json';
 ```
 
 ## Step 3: Wrap Your Initialization Code
@@ -60,10 +60,10 @@ init();
 **After:**
 ```javascript
 withThemes({
-  'themes/polaris/variants/light/colors.json': polarisLightColors,
-  'themes/polaris/variants/dark/colors.json': polarisDarkColors,
-  'themes/polaris/shape-and-form.json': polarisShapeForm,
-  'themes/polaris/typography.json': polarisTypography
+  'themes/coral/variants/light/colors.json': coralLightColors,
+  'themes/coral/variants/dark/colors.json': coralDarkColors,
+  'themes/coral/shape-and-form.json': coralShapeForm,
+  'themes/coral/typography.json': coralTypography
 }, async (themeLoader) => {
   // Your existing initialization code goes here:
   const myComponent = document.getElementById('my-component');
@@ -81,7 +81,7 @@ snc ui-component develop
 ```
 
 You should see:
-1. ✅ Theme automatically loads (Polaris Light by default)
+1. ✅ Theme automatically loads (Coral Light by default)
 2. ✅ Dropdown appears in top-right corner
 3. ✅ Switch between Light/Dark themes works instantly
 
@@ -94,17 +94,17 @@ import '../src/x-123456-my-component';
 import { withThemes } from '../servicenow-theme-loader/theme-switcher.js';
 
 // Import theme files
-import polarisLightColors from '../servicenow-theme-loader/themes/polaris/variants/light/colors.json';
-import polarisDarkColors from '../servicenow-theme-loader/themes/polaris/variants/dark/colors.json';
-import polarisShapeForm from '../servicenow-theme-loader/themes/polaris/shape-and-form.json';
-import polarisTypography from '../servicenow-theme-loader/themes/polaris/typography.json';
+import coralLightColors from '../servicenow-theme-loader/themes/coral/variants/light/colors.json';
+import coralDarkColors from '../servicenow-theme-loader/themes/coral/variants/dark/colors.json';
+import coralShapeForm from '../servicenow-theme-loader/themes/coral/shape-and-form.json';
+import coralTypography from '../servicenow-theme-loader/themes/coral/typography.json';
 
 // Initialize with themes
 withThemes({
-  'themes/polaris/variants/light/colors.json': polarisLightColors,
-  'themes/polaris/variants/dark/colors.json': polarisDarkColors,
-  'themes/polaris/shape-and-form.json': polarisShapeForm,
-  'themes/polaris/typography.json': polarisTypography
+  'themes/coral/variants/light/colors.json': coralLightColors,
+  'themes/coral/variants/dark/colors.json': coralDarkColors,
+  'themes/coral/shape-and-form.json': coralShapeForm,
+  'themes/coral/typography.json': coralTypography
 }, async (themeLoader) => {
   // Set up your component
   document.body.innerHTML = `
@@ -128,7 +128,7 @@ Customize the behavior with options:
 withThemes(
   preloadedThemes,
   {
-    defaultTheme: 'polaris',      // Which theme to load (default: first found)
+    defaultTheme: 'coral',      // Which theme to load (default: first found)
     defaultVariant: 'dark',       // Which variant to load (default: 'light')
     showSwitcher: true,           // Show the dropdown (default: true)
     enableCache: true,            // Cache theme files (default: true)
@@ -150,7 +150,7 @@ withThemes(
   { showSwitcher: false },  // No dropdown
   async (themeLoader) => {
     // Manually switch themes via themeLoader
-    await themeLoader.loadTheme('polaris', 'dark');
+    await themeLoader.loadTheme('coral', 'dark');
   }
 );
 ```

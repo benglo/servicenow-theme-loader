@@ -23,7 +23,7 @@ your-project/
     ├── parser.js
     ├── README.md
     └── themes/
-        ├── polaris/                    # Parent theme
+        ├── coral/                    # Parent theme
         │   ├── shape-and-form.json    # Shared files
         │   ├── typography.json        # Shared files
         │   └── variants/
@@ -60,18 +60,18 @@ The ServiceNow CLI dev server uses webpack and doesn't serve arbitrary static fi
 import { ServiceNowThemeLoader } from '../servicenow-theme-loader/index.js';
 
 // Import theme JSON files (webpack supports JSON imports natively)
-import polarisLightColors from '../servicenow-theme-loader/themes/polaris/variants/light/colors.json';
-import polarisDarkColors from '../servicenow-theme-loader/themes/polaris/variants/dark/colors.json';
-import polarisShapeForm from '../servicenow-theme-loader/themes/polaris/shape-and-form.json';
-import polarisTypography from '../servicenow-theme-loader/themes/polaris/typography.json';
+import coralLightColors from '../servicenow-theme-loader/themes/coral/variants/light/colors.json';
+import coralDarkColors from '../servicenow-theme-loader/themes/coral/variants/dark/colors.json';
+import coralShapeForm from '../servicenow-theme-loader/themes/coral/shape-and-form.json';
+import coralTypography from '../servicenow-theme-loader/themes/coral/typography.json';
 
 // Initialize with preloaded themes
 const loader = new ServiceNowThemeLoader({
   preloadedThemes: {
-    'themes/polaris/variants/light/colors.json': polarisLightColors,
-    'themes/polaris/variants/dark/colors.json': polarisDarkColors,
-    'themes/polaris/shape-and-form.json': polarisShapeForm,
-    'themes/polaris/typography.json': polarisTypography
+    'themes/coral/variants/light/colors.json': coralLightColors,
+    'themes/coral/variants/dark/colors.json': coralDarkColors,
+    'themes/coral/shape-and-form.json': coralShapeForm,
+    'themes/coral/typography.json': coralTypography
   }
 });
 
@@ -93,17 +93,17 @@ The easiest way to add theme switching is with the `withThemes()` wrapper functi
 import { withThemes } from '../servicenow-theme-loader/theme-switcher.js';
 
 // Import theme JSON files
-import polarisLightColors from '../servicenow-theme-loader/themes/polaris/variants/light/colors.json';
-import polarisDarkColors from '../servicenow-theme-loader/themes/polaris/variants/dark/colors.json';
-import polarisShapeForm from '../servicenow-theme-loader/themes/polaris/shape-and-form.json';
-import polarisTypography from '../servicenow-theme-loader/themes/polaris/typography.json';
+import coralLightColors from '../servicenow-theme-loader/themes/coral/variants/light/colors.json';
+import coralDarkColors from '../servicenow-theme-loader/themes/coral/variants/dark/colors.json';
+import coralShapeForm from '../servicenow-theme-loader/themes/coral/shape-and-form.json';
+import coralTypography from '../servicenow-theme-loader/themes/coral/typography.json';
 
 // Wrap your app initialization
 withThemes({
-  'themes/polaris/variants/light/colors.json': polarisLightColors,
-  'themes/polaris/variants/dark/colors.json': polarisDarkColors,
-  'themes/polaris/shape-and-form.json': polarisShapeForm,
-  'themes/polaris/typography.json': polarisTypography
+  'themes/coral/variants/light/colors.json': coralLightColors,
+  'themes/coral/variants/dark/colors.json': coralDarkColors,
+  'themes/coral/shape-and-form.json': coralShapeForm,
+  'themes/coral/typography.json': coralTypography
 }, async (themeLoader) => {
   // Theme loaded! Dropdown created! Just initialize your app:
 
@@ -129,7 +129,7 @@ withThemes(preloadedThemes, options, initFn);
 **Available options:**
 ```javascript
 {
-  defaultTheme: 'polaris',      // Default theme name (auto-detected if omitted)
+  defaultTheme: 'coral',      // Default theme name (auto-detected if omitted)
   defaultVariant: 'light',      // Default variant (auto-detected if omitted)
   showSwitcher: true,           // Show theme switcher UI
   enableCache: true,            // Enable theme caching
@@ -150,13 +150,13 @@ import coralShapeForm from '../servicenow-theme-loader/themes/coral/shape-and-fo
 import coralTypography from '../servicenow-theme-loader/themes/coral/typography.json';
 
 withThemes({
-  // ... polaris themes
+  // ... coral themes
   'themes/coral/variants/light/colors.json': coralLightColors,
   'themes/coral/variants/dark/colors.json': coralDarkColors,
   'themes/coral/shape-and-form.json': coralShapeForm,
   'themes/coral/typography.json': coralTypography
 }, async (themeLoader) => {
-  // Dropdown now shows: Polaris - Light, Polaris - Dark, Coral - Light, Coral - Dark
+  // Dropdown now shows: Coral - Light, Coral - Dark, Coral - Light, Coral - Dark
 });
 ```
 
@@ -177,9 +177,9 @@ await loader.loadLightTheme();
 const switcher = document.createElement('theme-switcher');
 switcher.loader = loader;
 switcher.themes = {
-  polaris: { variants: ['light', 'dark'], files: {...} }
+  coral: { variants: ['light', 'dark'], files: {...} }
 };
-switcher.currentTheme = 'polaris:light';
+switcher.currentTheme = 'coral:light';
 
 document.body.appendChild(switcher);
 
@@ -225,12 +225,12 @@ withThemes(preloadedThemes, { showSwitcher: false }, async (loader) => {
 ```javascript
 // Switch to dark theme
 document.getElementById('dark-mode-toggle').addEventListener('click', async () => {
-  await loader.loadDarkTheme();  // Or: await loader.loadTheme('polaris', 'dark');
+  await loader.loadDarkTheme();  // Or: await loader.loadTheme('coral', 'dark');
 });
 
 // Switch back to light theme
 document.getElementById('light-mode-toggle').addEventListener('click', async () => {
-  await loader.loadLightTheme();  // Or: await loader.loadTheme('polaris', 'light');
+  await loader.loadLightTheme();  // Or: await loader.loadTheme('coral', 'light');
 });
 
 // Load a different theme entirely
@@ -271,7 +271,7 @@ const loader = new ServiceNowThemeLoader({
 Load a theme with a specific variant. This is the recommended way to load themes.
 
 ```javascript
-await loader.loadTheme('polaris', 'dark');
+await loader.loadTheme('coral', 'dark');
 await loader.loadTheme('coral', 'light');
 ```
 
@@ -288,7 +288,7 @@ await loader.loadTheme('coral', 'light');
 Load a single theme JSON file (advanced usage).
 
 ```javascript
-const themeData = await loader.loadSingleTheme('themes/polaris/shape-and-form.json');
+const themeData = await loader.loadSingleTheme('themes/coral/shape-and-form.json');
 ```
 
 **Returns:** `Promise<Object>` - Theme data object
