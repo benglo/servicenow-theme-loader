@@ -246,21 +246,6 @@ await loader.loadThemeSet([
   'custom/custom-spacing.json'           // Your spacing overrides
 ]);
 ```
-
-### Cache Management
-
-```javascript
-// Disable caching for development
-const loader = new ServiceNowThemeLoader({ enableCache: false });
-
-// Or clear cache when needed
-loader.clearCache();
-
-// Check cache status
-const stats = loader.getCacheStats();
-console.log(`Cached ${stats.size} theme files`);
-```
-
 ## Theme File Format
 
 ServiceNow theme files use JSON with two main sections:
