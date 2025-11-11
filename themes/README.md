@@ -140,19 +140,6 @@ const loader = new ServiceNowThemeLoader({
 await loader.loadTheme('coral', 'light');
 ```
 
-#### Option C: Using fetch (production)
-
-```javascript
-const loader = new ServiceNowThemeLoader();
-
-// Load manually with loadThemeSet
-await loader.loadThemeSet([
-  'servicenow-theme-loader/themes/coral/variants/light/colors.json',
-  'servicenow-theme-loader/themes/coral/shape-and-form.json',
-  'servicenow-theme-loader/themes/coral/typography.json'
-]);
-```
-
 ## Theme File Format
 
 ### Base Section
